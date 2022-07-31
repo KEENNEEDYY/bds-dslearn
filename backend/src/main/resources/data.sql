@@ -23,7 +23,9 @@ INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id, e
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id, external_link) VALUES('Forum', 'Tire suas duvidas', 2, 'https://ayltoninacio.com.br/img/p/90w750.jpg', 2,1,'');
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id, external_link) VALUES('Lives', 'Lives exclusivas para a turma', 3, 'https://ayltoninacio.com.br/img/p/90w750.jpg', 0,1,'');
 
-
+INSERT INTO tb_section(title, description, position, img_uri, resource_id, prerequisite_id) VALUES('Capítulo 1','Neste capítulo vamos começar', 1, 'https://ayltoninacio.com.br/img/p/90w750.jpg', 1, NULL);
+INSERT INTO tb_section(title, description, position, img_uri, resource_id, prerequisite_id) VALUES('Capítulo 2','Neste capítulo continuar', 2, 'https://ayltoninacio.com.br/img/p/90w750.jpg', 1, 1);
+INSERT INTO tb_section(title, description, position, img_uri, resource_id, prerequisite_id) VALUES('Capítulo 3','Neste capítulo vamos finalizar', 3, 'https://ayltoninacio.com.br/img/p/90w750.jpg', 1, 2);
 
 
 
