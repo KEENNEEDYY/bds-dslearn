@@ -15,59 +15,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_topic")
-public class Topic implements Serializable{
+@Table(name = "tb_reply")
+public class Reply implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String title;
 	
 	@Column(columnDefinition = "TEXT")
-	private String body;
+	private String Body;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
 	
-	@ManyToOne()
-	@JoinColumn(name = "lesson_id")
-	private Lesson lesson;
-	
 	@ManyToOne
-	@JoinColumn(name = "offer_id")
-	private Offer offer;
+	@JoinColumn(name = "topic_id")
+	private Topic topic;
 	
 	@ManyToOne
 	@JoinColumn(name = "author_id")
 	private User author;
 	
-	@ManyToOne
-	@JoinColumn(name = "reply_id")
-	private Reply answer;
-	
 	@ManyToMany
-	@JoinTable(name = "tb_topic_likes", 
-	 	joinColumns =  @JoinColumn(name = "topic_id"),
-	 	inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JoinTable(name = "tb_reply_likes",
+			joinColumns = @JoinColumn(name = "reply_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> likes = new HashSet<>();
 	
-	@OneToMany(mappedBy = "topic")
-	private Set<Reply> replies = new HashSet<>();
-	
-	public Topic() {
+	public Reply() {
 	}
 
-	public Topic(Long id, String title, String body, Instant moment, Lesson lesson, Offer offer, User author) {
+	public Reply(Long id, String body, Instant moment, Topic topic, User author) {
 		this.id = id;
-		this.title = title;
-		this.body = body;
+		Body = body;
 		this.moment = moment;
-		this.lesson = lesson;
-		this.offer = offer;
+		this.topic = topic;
 		this.author = author;
 	}
 
@@ -79,20 +64,12 @@ public class Topic implements Serializable{
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getBody() {
-		return body;
+		return Body;
 	}
 
 	public void setBody(String body) {
-		this.body = body;
+		Body = body;
 	}
 
 	public Instant getMoment() {
@@ -103,20 +80,12 @@ public class Topic implements Serializable{
 		this.moment = moment;
 	}
 
-	public Lesson getLesson() {
-		return lesson;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
-	}
-
-	public Offer getOffer() {
-		return offer;
-	}
-
-	public void setOffer(Offer offer) {
-		this.offer = offer;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 	public User getAuthor() {
@@ -131,17 +100,9 @@ public class Topic implements Serializable{
 		return likes;
 	}
 
-	public Reply getAnswer() {
-		return answer;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
-	}
-
-	public Set<Reply> getReplies() {
-		return replies;
 	}
 
 	@Override
@@ -152,7 +113,7 @@ public class Topic implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topic other = (Topic) obj;
+		Reply other = (Reply) obj;
 		return Objects.equals(id, other.id);
 	}
 }
