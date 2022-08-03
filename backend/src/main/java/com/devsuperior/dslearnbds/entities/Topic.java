@@ -33,7 +33,7 @@ public class Topic implements Serializable{
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "lesson_id")
 	private Lesson lesson;
 	
@@ -133,6 +133,10 @@ public class Topic implements Serializable{
 
 	public Reply getAnswer() {
 		return answer;
+	}
+
+	public void setAnswer(Reply answer) {
+		this.answer = answer;
 	}
 
 	@Override
