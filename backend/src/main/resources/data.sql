@@ -33,7 +33,6 @@ INSERT INTO tb_enrollment(user_id, offer_id, enroll_moment, refund_moment, avail
 INSERT INTO tb_lesson(title, position, section_id) VALUES('Aula 1 do capítulo 1', 1, 1);
 INSERT INTO tb_lesson(title, position, section_id) VALUES('Aula 2 do capítulo 1', 2, 1);
 INSERT INTO tb_lesson(title, position, section_id) VALUES('Aula 3 do capítulo 1', 3, 1);
-
 INSERT INTO tb_lesson(title, position, section_id) VALUES('Tarefa do capitulo 1', 4, 1);
 
 INSERT INTO tb_content(id, text_content, video_uri) VALUES(1, 'Material de apoio: abc','https://youtu.be/bIPd_451uEg');
